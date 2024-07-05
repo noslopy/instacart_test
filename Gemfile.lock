@@ -110,6 +110,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.4-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.4-x86_64-linux)
+      racc (~> 1.4)
     puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -165,8 +167,8 @@ GEM
     rspec-support (3.12.0)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    spring (3.1.1)
     sqlite3 (1.6.2-x86_64-darwin)
+    sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.2)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -178,6 +180,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   activestorage-validator
@@ -188,7 +191,6 @@ DEPENDENCIES
   rails (~> 7.0.0, >= 7.0.0)
   rspec-rails (~> 6.0)
   rspec_junit_formatter (~> 0.4.1)
-  spring (~> 3.1.1)
   sqlite3 (~> 1.4)
   tzinfo-data
 
@@ -196,4 +198,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.10
+   2.4.12
