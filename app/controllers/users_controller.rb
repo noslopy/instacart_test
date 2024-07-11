@@ -2,18 +2,17 @@
 
 class UsersController < ApplicationController
   def show
-    users = User.select(:avatar, :id, :username)
-    users = users.map {|user| {avatar: user.avatar.blob.filename, id: user.id, username: user.username}}
+    users = User.select(:avatar, :id, :username).map {|user| user_filter(user)}
     render json: users, status: :ok
   end
 
   def create
-    unless params[:user][:avatar].present?
-      render json: { errors: ['Avatar can\'t be blank'] }, status: :unprocessable_entity
-      return
-    end
-    unless params[:user][:username].present?
-      render json: { errors: ['Username can\'t be blank'] }, status: :unprocessable_entity
+    errors = []
+    errors << 'Avatar can\'t be blank' unless params[:user][:avatar].present?
+    errors << 'Username can\'t be blank' unless params[:user][:username].present?
+    
+    if errors.any?
+      render json: { errors: errors }, status: :unprocessable_entity
       return
     end
 
@@ -27,6 +26,12 @@ class UsersController < ApplicationController
       return
     end
 
-    render json: { avatar: user.avatar.blob.filename, id: user.id, username: user.username }, status: :created
+    render json: user_filter(user), status: :created
+  end
+
+  private
+
+  def user_filter user
+    { avatar: user.avatar.blob.filename, id: user.id, username: user.username }
   end
 end
